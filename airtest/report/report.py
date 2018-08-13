@@ -195,7 +195,11 @@ class LogToHtml(object):
                     if not os.path.isfile(os.path.join(self.script_root, image_path)):
                         shutil.copy(value['_filepath'], self.script_root)
                 arg["image"] = image_path
-                crop_img = imread(os.path.join(self.script_root, str(value['filename'])))
+                # 此处为原始代码，由于report在调用using('common.air')文件时会报错，判定有BUG，故改之
+                # crop_img = imread(os.path.join(self.script_root, str(value['filename'])))
+
+                # 此处将原始代码中的路径改为使用image_path路径
+                crop_img = imread(image_path)
                 arg["resolution"] = get_resolution(crop_img)
         return code
 
