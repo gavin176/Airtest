@@ -139,5 +139,8 @@ def run_script(parsed_args, testcase_cls=AirtestCase):
     suite = unittest.TestSuite()
     suite.addTest(testcase_cls())
     result = unittest.TextTestRunner(verbosity=0).run(suite)
+    # 自定义功能，命令行打印result,方便后续调用该result
+    print(result)
+    
     if not result.wasSuccessful():
         sys.exit(-1)
